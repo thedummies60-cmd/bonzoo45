@@ -533,9 +533,9 @@ const API_KEY = "sk-f7a145d2164544ab869afe921fab3dc6";
 const API_URL = "https://openrouter.ai/api/v1/chat/completions";
 
 // Twee modellen
-const MODELS = {
-  fast: "deepseek-chat",      // Snel, geen thinking
-  think: "deepseek-reasoner"  // Langzamer, met thinking/reasoning
+const MODELS = { 
+  fast: "deepseek/deepseek-chat", 
+  think: "deepseek/deepseek-r1" 
 };
 
 // Huidige modus (opgeslagen in localStorage)
@@ -543,14 +543,8 @@ let currentMode = localStorage.getItem('bonzoo_mode') || 'fast';
 
 // CORS proxies - probeert ze allemaal tot er een werkt
 const PROXIES = [
-  url => "https://api.codetabs.com/v1/proxy?quest=" + encodeURIComponent(url),
-  url => "https://api.allorigins.win/raw?url=" + encodeURIComponent(url),
-  url => "https://thingproxy.freeboard.io/fetch/" + url,
-  url => "https://corsproxy.io/?" + encodeURIComponent(url),
-  url => "https://cors.eu.org/" + url,
-  url => "https://proxy.cors.sh/" + url
+  url => url  // Geen proxy nodig, OpenRouter werkt direct
 ];
-
 let conversations = JSON.parse(localStorage.getItem('chats') || '{}');
 let currentId = null;
 let isStreaming = false;
