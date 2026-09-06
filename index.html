@@ -543,10 +543,12 @@ let currentMode = localStorage.getItem('bonzoo_mode') || 'fast';
 
 // CORS proxies - probeert ze allemaal tot er een werkt
 const PROXIES = [
+  url => "https://api.codetabs.com/v1/proxy?quest=" + encodeURIComponent(url),
   url => "https://api.allorigins.win/raw?url=" + encodeURIComponent(url),
   url => "https://thingproxy.freeboard.io/fetch/" + url,
-  url => "https://cors-proxy.htmldriven.com/?url=" + encodeURIComponent(url),
-  url => "https://cors.eu.org/" + url
+  url => "https://corsproxy.io/?" + encodeURIComponent(url),
+  url => "https://cors.eu.org/" + url,
+  url => "https://proxy.cors.sh/" + url
 ];
 
 let conversations = JSON.parse(localStorage.getItem('chats') || '{}');
